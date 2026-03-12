@@ -7,15 +7,25 @@
   --teal-accent: #2dd4bf;
   --red-accent: #f87171;
   --purple-accent: #a78bfa;
+  --yellow-accent: #fbbf24;
 }
 
 html {
   font-family: 'Inter', system-ui, sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
   min-height: 100vh;
+  background-attachment: fixed;
+}
+
+/* Mobile safe area */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 /* Custom scrollbar */
@@ -35,6 +45,18 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #475569;
+}
+
+/* Hide scrollbar on mobile for horizontal scroll areas */
+@media (max-width: 768px) {
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Glassmorphism utility */
@@ -66,6 +88,13 @@ body {
 }
 
 /* Line clamp utilities */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -91,4 +120,54 @@ body {
 
 .glow-red {
   box-shadow: 0 0 20px rgba(248, 113, 113, 0.15);
+}
+
+.glow-yellow {
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.15);
+}
+
+/* Card hover states */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--teal-accent), var(--purple-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle grid background */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(51, 65, 85, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(51, 65, 85, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Focus states for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--teal-accent);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for all interactive elements */
+button, a, input, select, textarea {
+  transition: all 0.2s ease;
+}
+
+/* Mobile bottom nav padding */
+@media (max-width: 768px) {
+  main {
+    padding-bottom: 80px !important;
+  }
 }

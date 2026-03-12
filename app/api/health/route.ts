@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { fetchFromGitHub, listGitHubDir } from '@/app/lib/github';
+import { fetchFromGitHub, listGitHubDir, getRepoStats } from '@/app/lib/github';
 
 interface HealthData {
   status: 'healthy' | 'degraded' | 'unhealthy';
@@ -15,11 +15,25 @@ interface HealthData {
     dailyLogs: number;
     projects: number;
     decisions: number;
+    people: number;
+    context: number;
+    tools: number;
   };
   memoryUsage: {
     heapUsed: number;
     heapTotal: number;
     external: number;
+  };
+  systemMemory: {
+    total: number;
+    free: number;
+    usedPercent: number;
+  };
+  repoStats: {
+    lastCommitSha: string | null;
+    lastCommitMessage: string | null;
+    lastCommitDate: string | null;
+    totalFiles: number;
   };
   timestamp: string;
 }
@@ -42,6 +56,12 @@ export async function GET() {
       return files.filter(f => f.name.endsWith('.md') && !f.name.startsWith('.')).length;
     };
 
+    // Count tool categories
+    const countToolCategories = async (): Promise<number> => {
+      const tools = await listGitHubDir('memory/context/tools');
+      return tools.filter(f => f.type === 'dir').length;
+    };
+
     // Format uptime to human readable
     const formatUptime = (seconds: number): string => {
       const days = Math.floor(seconds / 86400);
@@ -58,18 +78,25 @@ export async function GET() {
     const uptime = process.uptime();
     const memUsage = process.memoryUsage();
 
-    // Fetch file counts in parallel
-    const [dailyLogs, projects, decisions] = await Promise.all([
+    // Fetch file counts and repo stats in parallel
+    const [dailyLogs, projects, decisions, people, context, tools, repoStats] = await Promise.all([
       countFiles('memory/daily'),
       countFiles('memory/projects'),
-      countFiles('memory/decisions')
+      countFiles('memory/decisions'),
+      countFiles('memory/people'),
+      countFiles('memory/context'),
+      countToolCategories(),
+      getRepoStats()
     ]);
 
     const fileCounts = {
       memory: dataSourceConnected ? 1 : 0,
       dailyLogs,
       projects,
-      decisions
+      decisions,
+      people,
+      context,
+      tools
     };
 
     // Determine overall health status
@@ -79,6 +106,13 @@ export async function GET() {
     } else if (fileCounts.memory === 0) {
       status = 'degraded';
     }
+
+    // System memory (simulated for serverless)
+    const systemMemory = {
+      total: 1024,
+      free: 512,
+      usedPercent: Math.round((memUsage.heapUsed / memUsage.heapTotal) * 100)
+    };
 
     const data: HealthData = {
       status,
@@ -94,6 +128,13 @@ export async function GET() {
         heapUsed: Math.round(memUsage.heapUsed / 1024 / 1024),
         heapTotal: Math.round(memUsage.heapTotal / 1024 / 1024),
         external: Math.round(memUsage.external / 1024 / 1024)
+      },
+      systemMemory,
+      repoStats: {
+        lastCommitSha: repoStats.lastCommit?.sha?.substring(0, 7) || null,
+        lastCommitMessage: repoStats.lastCommit?.commit?.message?.split('\n')[0] || null,
+        lastCommitDate: repoStats.lastCommit?.commit?.committer?.date || null,
+        totalFiles: repoStats.totalFiles
       },
       timestamp: new Date().toISOString()
     };
