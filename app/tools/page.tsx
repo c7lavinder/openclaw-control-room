@@ -44,7 +44,7 @@ export default function ToolsPage() {
       setToolsData(data);
       
       // Auto-expand categories with tools
-      const withTools = new Set(data.categories?.filter((c: ToolCategory) => c.toolCount > 0).map((c: ToolCategory) => c.name) || []);
+      const withTools = new Set<string>(data.categories?.filter((c: ToolCategory) => c.toolCount > 0).map((c: ToolCategory) => c.name) || []);
       if (withTools.size <= 4) {
         setExpandedCategories(withTools);
       }
