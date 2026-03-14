@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corey's AI Empire — The Team</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #080810;
+    --card: #0f0f1a;
+    --card-border: #1a1a2e;
+    --text: #f0f0ff;
+    --muted: #6b7280;
+    --xhaka: #6366f1;
+    --xhaka-dim: rgba(99,102,241,0.12);
+    --xhaka-glow: rgba(99,102,241,0.3);
+    --nah: #10b981;
+    --nah-dim: rgba(16,185,129,0.12);
+    --nah-glow: rgba(16,185,129,0.3);
+    --gunner: #f59e0b;
+    --gunner-dim: rgba(245,158,11,0.12);
+    --gunner-glow: rgba(245,158,11,0.3);
+    --built-color: #10b981;
+    --partial-color: #f59e0b;
+    --needs-color: #6b7280;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 100px 20px 80px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(ellipse at center, rgba(99,102,241,0.18) 0%, rgba(16,185,129,0.08) 40%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.25);
+    color: #a5b4fc;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+
+  .hero-eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #6366f1;
+    box-shadow: 0 0 8px rgba(99,102,241,0.8);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #fff 0%, #a5b4fc 40%, #6ee7b7 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    font-size: 1.15rem;
+    color: #9ca3af;
+    font-weight: 400;
+    max-width: 500px;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .hero-stat-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1px solid;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s;
+  }
+
+  .hero-stat-pill:hover { transform: translateY(-2px); }
+
+  .hero-stat-pill.xhaka {
+    background: rgba(99,102,241,0.08);
+    border-color: rgba(99,102,241,0.3);
+    color: #a5b4fc;
+  }
+
+  .hero-stat-pill.nah {
+    background: rgba(16,185,129,0.08);
+    border-color: rgba(16,185,129,0.3);
+    color: #6ee7b7;
+  }
+
+  .hero-stat-pill.gunner {
+    background: rgba(245,158,11,0.08);
+    border-color: rgba(245,158,11,0.3);
+    color: #fcd34d;
+  }
+
+  .pill-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .hero-stat-pill.xhaka .pill-dot { background: #6366f1; box-shadow: 0 0 6px rgba(99,102,241,0.8); }
+  .hero-stat-pill.nah .pill-dot { background: #10b981; box-shadow: 0 0 6px rgba(16,185,129,0.8); }
+  .hero-stat-pill.gunner .pill-dot { background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,0.8); }
+
+  /* ─── LEGEND ─── */
+  .legend {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  /* ─── MAIN CONTENT ─── */
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── TEAM SECTION ─── */
+  .team-section {
+    margin-bottom: 100px;
+    position: relative;
+  }
+
+  .team-section-header {
+    position: relative;
+    margin-bottom: 48px;
+  }
+
+  .team-accent-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 2px;
+  }
+
+  .xhaka-accent { background: linear-gradient(180deg, #6366f1, #8b5cf6); }
+  .nah-accent { background: linear-gradient(180deg, #10b981, #059669); }
+  .gunner-accent { background: linear-gradient(180deg, #f59e0b, #ef4444); }
+
+  .team-section-inner {
+    padding-left: 24px;
+  }
+
+  .team-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .xhaka-label { color: #6366f1; }
+  .nah-label { color: #10b981; }
+  .gunner-label { color: #f59e0b; }
+
+  .team-name {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+
+  .team-mission {
+    color: #6b7280;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 600px;
+  }
+
+  .team-stats-bar {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .team-stat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #9ca3af;
+  }
+
+  .stat-indicator {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+
+  .stat-built { background: #10b981; }
+  .stat-progress { background: #f59e0b; }
+  .stat-planned { background: #374151; }
+
+  /* ─── ORG CHART ─── */
+  .org-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .ceo-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(135deg, rgba(15,15,26,0.9), rgba(26,26,48,0.9));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 16px 28px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    width: fit-content;
+  }
+
+  .ceo-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e1b4b, #312e81);
+    border: 2px solid rgba(99,102,241,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .ceo-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .ceo-role {
+    font-size: 0.72rem;
+    color: #6b7280;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  .org-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    gap: 0;
+  }
+
+  .org-line-v {
+    width: 1px;
+    height: 24px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .org-line-h-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .org-arrow {
+    color: rgba(255,255,255,0.15);
+    font-size: 0.65rem;
+    letter-spacing: -1px;
+  }
+
+  /* ─── CARD GRID ─── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  /* ─── MEMBER CARD ─── */
+  .member-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 3px solid transparent;
+  }
+
+  .member-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  /* Built cards — green left border + subtle glow */
+  .member-card.is-built {
+    border-left-color: rgba(16,185,129,0.5);
+  }
+
+  .member-card.is-built::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #10b981, #059669);
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* Needs build — dimmed */
+  .member-card.is-needs {
+    opacity: 0.72;
+  }
+
+  .member-card.is-needs:hover {
+    opacity: 1;
+  }
+
+  /* Team-colored hover glows */
+  .xhaka-card:hover {
+    border-color: rgba(99,102,241,0.4);
+    box-shadow: 0 0 0 1px rgba(99,102,241,0.15), 0 8px 32px rgba(99,102,241,0.15), 0 2px 8px rgba(0,0,0,0.4);
+    transform: translateY(-3px);
+  }
+
+  .nah-card:hover {
+    border-color: rgba(16,185,129,0.4);
+    box-shadow: 0 0 0 1px rgba(16,185,129,0.15), 0 8px 32px rgba(16,185,129,0.15), 0 2px 8px rgba(0,0,0,0.4);
+    transform: translateY(-3px);
+  }
+
+  .gunner-card:hover {
+    border-color: rgba(245,158,11,0.4);
+    box-shadow: 0 0 0 1px rgba(245,158,11,0.15), 0 8px 32px rgba(245,158,11,0.15), 0 2px 8px rgba(0,0,0,0.4);
+    transform: translateY(-3px);
+  }
+
+  /* ─── CARD HEADER ─── */
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    gap: 12px;
+  }
+
+  .card-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .card-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .xhaka-card .card-avatar {
+    background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.15));
+    border: 1px solid rgba(99,102,241,0.3);
+  }
+
+  .nah-card .card-avatar {
+    background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(5,150,105,0.15));
+    border: 1px solid rgba(16,185,129,0.3);
+  }
+
+  .gunner-card .card-avatar {
+    background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(239,68,68,0.12));
+    border: 1px solid rgba(245,158,11,0.3);
+  }
+
+  .card-identity { flex: 1; min-width: 0; }
+
+  .card-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-role-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 100px;
+    border: 1px solid;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .xhaka-card .card-role-pill {
+    color: #a5b4fc;
+    background: rgba(99,102,241,0.12);
+    border-color: rgba(99,102,241,0.25);
+  }
+
+  .nah-card .card-role-pill {
+    color: #6ee7b7;
+    background: rgba(16,185,129,0.12);
+    border-color: rgba(16,185,129,0.25);
+  }
+
+  .gunner-card .card-role-pill {
+    color: #fcd34d;
+    background: rgba(245,158,11,0.12);
+    border-color: rgba(245,158,11,0.25);
+  }
+
+  /* ─── STATUS BADGE ─── */
+  .status-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.3px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .status-badge.built {
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.25);
+    color: #34d399;
+  }
+
+  .status-badge.built .status-dot {
+    background: #10b981;
+    box-shadow: 0 0 6px rgba(16,185,129,0.6);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .status-badge.partial {
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.25);
+    color: #fbbf24;
+  }
+
+  .status-badge.partial .status-dot {
+    background: #f59e0b;
+  }
+
+  .status-badge.needs {
+    background: rgba(107,114,128,0.1);
+    border: 1px solid rgba(107,114,128,0.2);
+    color: #9ca3af;
+  }
+
+  .status-badge.needs .status-dot {
+    background: #4b5563;
+  }
+
+  /* ─── CARD DIVIDER ─── */
+  .card-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.05);
+    margin: 16px 0;
+  }
+
+  /* ─── CARD SECTIONS ─── */
+  .card-section {
+    margin-bottom: 14px;
+  }
+
+  .card-section:last-child { margin-bottom: 0; }
+
+  .card-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #4b5563;
+    margin-bottom: 5px;
+  }
+
+  .card-value {
+    font-size: 0.83rem;
+    color: #9ca3af;
+    line-height: 1.55;
+  }
+
+  /* ─── ABILITIES ─── */
+  .abilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .ability-tag {
+    font-size: 0.63rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 100px;
+    border: 1px solid;
+    letter-spacing: 0.2px;
+    transition: all 0.15s;
+    cursor: default;
+  }
+
+  .xhaka-card .ability-tag {
+    color: #818cf8;
+    background: rgba(99,102,241,0.07);
+    border-color: rgba(99,102,241,0.2);
+  }
+
+  .xhaka-card .ability-tag:hover {
+    background: rgba(99,102,241,0.15);
+    border-color: rgba(99,102,241,0.4);
+    color: #a5b4fc;
+  }
+
+  .nah-card .ability-tag {
+    color: #34d399;
+    background: rgba(16,185,129,0.07);
+    border-color: rgba(16,185,129,0.2);
+  }
+
+  .nah-card .ability-tag:hover {
+    background: rgba(16,185,129,0.15);
+    border-color: rgba(16,185,129,0.4);
+    color: #6ee7b7;
+  }
+
+  .gunner-card .ability-tag {
+    color: #fbbf24;
+    background: rgba(245,158,11,0.07);
+    border-color: rgba(245,158,11,0.2);
+  }
+
+  .gunner-card .ability-tag:hover {
+    background: rgba(245,158,11,0.15);
+    border-color: rgba(245,158,11,0.4);
+    color: #fcd34d;
+  }
+
+  /* ─── SECTION DIVIDER ─── */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    margin: 0 0 100px;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center;
+    padding: 40px 20px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-text {
+    font-size: 0.78rem;
+    color: #374151;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-text span {
+    color: #4b5563;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 700px) {
+    .hero { padding: 72px 20px 60px; }
+    .team-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 10px; }
+    .card-name { white-space: normal; }
+  }
+
+  @media (max-width: 480px) {
+    .card-header { flex-wrap: wrap; }
+    .hero-stat-pill { font-size: 0.75rem; padding: 8px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="hero-eyebrow-dot"></span>
+    AI-Native Organization
+  </div>
+  <h1 class="hero-title">Corey's AI Empire</h1>
+  <p class="hero-tagline">Three specialized teams. Nineteen agents. One mission — run everything without Corey in the middle.</p>
+
+  <div class="hero-stats">
+    <div class="hero-stat-pill xhaka">
+      <span class="pill-dot"></span>
+      Team Xhaka · 7 Agents
+    </div>
+    <div class="hero-stat-pill nah">
+      <span class="pill-dot"></span>
+      Team NAH · 6 Agents
+    </div>
+    <div class="hero-stat-pill gunner">
+      <span class="pill-dot"></span>
+      Team Gunner · 6 Agents
+    </div>
+  </div>
+</section>
+
+<!-- ─── LEGEND ─── -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#10b981;box-shadow:0 0 6px rgba(16,185,129,0.6)"></div>Live &amp; Built</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>In Progress</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#374151"></div>Planned</div>
+</div>
+
+<div style="height:48px"></div>
+
+<!-- ─── CONTENT ─── -->
+<div class="content">
+
+  <!-- ══════════════════════════════════════════
+       TEAM XHAKA
+  ══════════════════════════════════════════ -->
+  <div class="team-section">
+    <div class="team-section-header">
+      <div class="team-accent-bar xhaka-accent"></div>
+      <div class="team-section-inner">
+        <div class="team-label xhaka-label">Team Xhaka</div>
+        <h2 class="team-name">🧠 Personal Command Center</h2>
+        <p class="team-mission">Conquers any project, idea, or task across life, pleasure, and business — Corey's cognitive exoskeleton.</p>
+        <div class="team-stats-bar">
+          <div class="team-stat"><span class="stat-indicator stat-built"></span>6 Built</div>
+          <div class="team-stat" style="color:#4b5563">·</div>
+          <div class="team-stat"><span class="stat-indicator stat-progress"></span>0 In Progress</div>
+          <div class="team-stat" style="color:#4b5563">·</div>
+          <div class="team-stat"><span class="stat-indicator stat-planned"></span>1 Planned</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="org-chart">
+      <div class="ceo-card">
+        <div class="ceo-avatar">👑</div>
+        <div>
+          <div class="ceo-name">Corey Lavinder</div>
+          <div class="ceo-role">CEO · Vision · Final Authority</div>
+        </div>
+      </div>
+      <div class="org-connector">
+        <div class="org-line-v"></div>
+        <div class="org-arrow">▼</div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+
+      <div class="member-card xhaka-card is-built">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">🧠</div>
+            <div class="card-identity">
+              <div class="card-name">Xhaka</div>
+              <div class="card-role-pill">COO · Strategic Partner</div>
+            </div>
+          </div>
+          <div class="status-badge built"><span class="status-dot"></span>Live</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Goal tracking, accountability, decision support, memory, routing</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">Reduce Corey's cognitive load to zero on anything operational</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">Memory</span>
+            <span class="ability-tag">Routing</span>
+            <span class="ability-tag">Strategy</span>
+            <span class="ability-tag">Agent Orchestration</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card xhaka-card is-built">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">🏗️</div>
+            <div class="card-identity">
+              <div class="card-name">The Builder</div>
+              <div class="card-role-pill">Engineering Specialist</div>
+            </div>
+          </div>
+          <div class="status-badge built"><span class="status-dot"></span>Live</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Writes, deploys, and ships code. Any coding task &gt; 2 lines.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">Zero broken builds. Spec-faithful output every time.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">TypeScript</span>
+            <span class="ability-tag">Railway</span>
+            <span class="ability-tag">GitHub</span>
+            <span class="ability-tag">APIs</span>
+            <span class="ability-tag">Migrations</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card xhaka-card is-built">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">🔬</div>
+            <div class="card-identity">
+              <div class="card-name">The Researcher</div>
+              <div class="card-role-pill">Intelligence Officer</div>
+            </div>
+          </div>
+          <div class="status-badge built"><span class="status-dot"></span>Live</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Finds what you don't know you need. Surfaces before you ask.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">Corey wakes up smarter than when he went to sleep.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">Tool Monitoring</span>
+            <span class="ability-tag">Pattern Mining</span>
+            <span class="ability-tag">Article Intel</span>
+            <span class="ability-tag">Proactive Scanning</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card xhaka-card is-built">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">👮‍♂️</div>
+            <div class="card-identity">
+              <div class="card-name">The Auditor</div>
+              <div class="card-role-pill">Quality &amp; Standards Officer</div>
+            </div>
+          </div>
+          <div class="status-badge built"><span class="status-dot"></span>Live</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Catches what Builder misses. Nothing ships broken.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">Standards enforced without Corey having to check.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">Code Review</span>
+            <span class="ability-tag">Benchmarking</span>
+            <span class="ability-tag">TypeScript</span>
+            <span class="ability-tag">Compliance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card xhaka-card is-built">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">🎨</div>
+            <div class="card-identity">
+              <div class="card-name">The Architect</div>
+              <div class="card-role-pill">Systems Designer</div>
+            </div>
+          </div>
+          <div class="status-badge built"><span class="status-dot"></span>Live</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Designs every system before Builder touches it.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">No Builder ever starts without a clear, risk-assessed spec.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">System Design</span>
+            <span class="ability-tag">Data Schemas</span>
+            <span class="ability-tag">Prompt Architecture</span>
+            <span class="ability-tag">Risk Assessment</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card xhaka-card is-built">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">⚙️</div>
+            <div class="card-identity">
+              <div class="card-name">The Operator</div>
+              <div class="card-role-pill">Infrastructure Specialist</div>
+            </div>
+          </div>
+          <div class="status-badge built"><span class="status-dot"></span>Live</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Manages all external systems. Every config correct, every ID findable.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">Nothing breaks silently. Everything is configured right.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">GHL</span>
+            <span class="ability-tag">Railway</span>
+            <span class="ability-tag">GitHub</span>
+            <span class="ability-tag">Webhooks</span>
+            <span class="ability-tag">Twilio</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card xhaka-card is-needs">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">📊</div>
+            <div class="card-identity">
+              <div class="card-name">The Analyst</div>
+              <div class="card-role-pill">Data &amp; Financial Intelligence</div>
+            </div>
+          </div>
+          <div class="status-badge needs"><span class="status-dot"></span>Planned</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Pulls KPIs, financials, and performance data. Delivers scoreboard daily.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">Corey always knows the numbers without pulling them himself.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">KPI Tracking</span>
+            <span class="ability-tag">P&amp;L Summaries</span>
+            <span class="ability-tag">Trend Analysis</span>
+            <span class="ability-tag">BatchDialer</span>
+            <span class="ability-tag">GHL Metrics</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ══════════════════════════════════════════
+       TEAM NAH
+  ══════════════════════════════════════════ -->
+  <div class="team-section">
+    <div class="team-section-header">
+      <div class="team-accent-bar nah-accent"></div>
+      <div class="team-section-inner">
+        <div class="team-label nah-label">Team NAH</div>
+        <h2 class="team-name">🏠 The Automated Wholesale Machine</h2>
+        <p class="team-mission">Runs the business without Corey in the middle — fully AI-powered wholesale real estate.</p>
+        <div class="team-stats-bar">
+          <div class="team-stat"><span class="stat-indicator stat-built"></span>1 Built</div>
+          <div class="team-stat" style="color:#4b5563">·</div>
+          <div class="team-stat"><span class="stat-indicator stat-progress"></span>0 In Progress</div>
+          <div class="team-stat" style="color:#4b5563">·</div>
+          <div class="team-stat"><span class="stat-indicator stat-planned"></span>5 Planned</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="org-chart">
+      <div class="ceo-card">
+        <div class="ceo-avatar">👑</div>
+        <div>
+          <div class="ceo-name">Corey Lavinder</div>
+          <div class="ceo-role">Owner · Decisions Only</div>
+        </div>
+      </div>
+      <div class="org-connector">
+        <div class="org-line-v"></div>
+        <div class="org-arrow">▼</div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+
+      <div class="member-card nah-card is-needs">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">🎯</div>
+            <div class="card-identity">
+              <div class="card-name">The Acquisition Engine</div>
+              <div class="card-role-pill">Lead Intelligence</div>
+            </div>
+          </div>
+          <div class="status-badge needs"><span class="status-dot"></span>Planned</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Scores every inbound lead, routes to right LM, flags urgent sellers.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">No lead goes cold. Every seller gets the right response in minutes.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">GHL Lead Scoring</span>
+            <span class="ability-tag">Intent Classification</span>
+            <span class="ability-tag">Call Routing</span>
+            <span class="ability-tag">Urgency Detection</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card nah-card is-needs">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">🔢</div>
+            <div class="card-identity">
+              <div class="card-name">The Valuations AI</div>
+              <div class="card-role-pill">Comps · ARV · Offers</div>
+            </div>
+          </div>
+          <div class="status-badge needs"><span class="status-dot"></span>Planned</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Pulls comps, estimates ARV, recommends offer ranges per deal.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">Every offer is data-backed. No guessing. No money left on the table.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">BatchLeads Data</span>
+            <span class="ability-tag">Comp Analysis</span>
+            <span class="ability-tag">ARV Calculator</span>
+            <span class="ability-tag">Deal Scoring</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card nah-card is-needs">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">📲</div>
+            <div class="card-identity">
+              <div class="card-name">The Follow-Up Engine</div>
+              <div class="card-role-pill">Pipeline · Bucket Management</div>
+            </div>
+          </div>
+          <div class="status-badge needs"><span class="status-dot"></span>Planned</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Manages 1mo/4mo/12mo buckets. Automates every touch point.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">Zero leads fall through the cracks. Ever.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">GHL Automation</span>
+            <span class="ability-tag">SMS Sequences</span>
+            <span class="ability-tag">Bucket Routing</span>
+            <span class="ability-tag">Re-engagement</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card nah-card is-needs">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">🤝</div>
+            <div class="card-identity">
+              <div class="card-name">The Dispo AI</div>
+              <div class="card-role-pill">Buyer Relations · Deal Matching</div>
+            </div>
+          </div>
+          <div class="status-badge needs"><span class="status-dot"></span>Planned</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Manages buyer list, matches deals to buyers, runs blast campaigns.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">3+ qualified buyers lined up before every contract is signed.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">Buyer Database</span>
+            <span class="ability-tag">Deal Matching</span>
+            <span class="ability-tag">Blast Campaigns</span>
+            <span class="ability-tag">Price Intel</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card nah-card is-built">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">📈</div>
+            <div class="card-identity">
+              <div class="card-name">The Coach</div>
+              <div class="card-role-pill">Team Performance · Coaching</div>
+            </div>
+          </div>
+          <div class="status-badge built"><span class="status-dot"></span>Live (Gunner)</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Grades every call. Coaches Kyle, Daniel, Chris, Efren, Mirna.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">Every team member improves every week. No one plateaus.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">Call Grading</span>
+            <span class="ability-tag">Coaching Feedback</span>
+            <span class="ability-tag">Leaderboard</span>
+            <span class="ability-tag">Weakness Detection</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card nah-card is-needs">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">⚖️</div>
+            <div class="card-identity">
+              <div class="card-name">The Compliance Officer</div>
+              <div class="card-role-pill">Legal · TCPA · Data Integrity</div>
+            </div>
+          </div>
+          <div class="status-badge needs"><span class="status-dot"></span>Planned</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Keeps NAH clean on SMS, calls, and data. No violations.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">Zero TCPA violations. Zero DNC violations. Clean data always.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">DNC Scrubbing</span>
+            <span class="ability-tag">Opt-out Enforcement</span>
+            <span class="ability-tag">Call Disclosure</span>
+            <span class="ability-tag">Compliance Monitoring</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ══════════════════════════════════════════
+       TEAM GUNNER
+  ══════════════════════════════════════════ -->
+  <div class="team-section">
+    <div class="team-section-header">
+      <div class="team-accent-bar gunner-accent"></div>
+      <div class="team-section-inner">
+        <div class="team-label gunner-label">Team Gunner</div>
+        <h2 class="team-name">🔫 The 100-User Growth Machine</h2>
+        <p class="team-mission">10 industries × 100 users each — starting with wholesale, scaling everywhere.</p>
+        <div class="team-stats-bar">
+          <div class="team-stat"><span class="stat-indicator stat-built"></span>0 Built</div>
+          <div class="team-stat" style="color:#4b5563">·</div>
+          <div class="team-stat"><span class="stat-indicator stat-progress"></span>1 In Progress</div>
+          <div class="team-stat" style="color:#4b5563">·</div>
+          <div class="team-stat"><span class="stat-indicator stat-planned"></span>5 Planned</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="org-chart">
+      <div class="ceo-card">
+        <div class="ceo-avatar">👑</div>
+        <div>
+          <div class="ceo-name">Corey Lavinder</div>
+          <div class="ceo-role">Founder · Product Vision</div>
+        </div>
+      </div>
+      <div class="org-connector">
+        <div class="org-line-v"></div>
+        <div class="org-arrow">▼</div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+
+      <div class="member-card gunner-card is-needs">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">🚀</div>
+            <div class="card-identity">
+              <div class="card-name">The Growth Engine</div>
+              <div class="card-role-pill">Pipeline · Outbound</div>
+            </div>
+          </div>
+          <div class="status-badge needs"><span class="status-dot"></span>Planned</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Finds the right people, gets them to a demo call. Every industry.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">20+ qualified demo calls per month per vertical.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">ICP Targeting</span>
+            <span class="ability-tag">Cold Outreach</span>
+            <span class="ability-tag">Demo Booking</span>
+            <span class="ability-tag">Lead Scoring</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card gunner-card">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">🎓</div>
+            <div class="card-identity">
+              <div class="card-name">The Onboarder</div>
+              <div class="card-role-pill">Activation · Time-to-Value</div>
+            </div>
+          </div>
+          <div class="status-badge partial"><span class="status-dot"></span>In Progress</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Gets new tenants live with a working playbook in under 24 hours.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">First graded call within 24h of signup. Every time.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">Wizard Setup</span>
+            <span class="ability-tag">GHL Webhooks</span>
+            <span class="ability-tag">Playbook Config</span>
+            <span class="ability-tag">Team Import</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card gunner-card is-needs">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">🏭</div>
+            <div class="card-identity">
+              <div class="card-name">The Industry Expert</div>
+              <div class="card-role-pill">Vertical Playbooks</div>
+            </div>
+          </div>
+          <div class="status-badge needs"><span class="status-dot"></span>Planned</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Adapts grading rubrics and playbooks for each new industry.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">10 industries, each with a native playbook that actually works.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">Rubric Building</span>
+            <span class="ability-tag">Call Pattern Analysis</span>
+            <span class="ability-tag">Objection Libraries</span>
+            <span class="ability-tag">Benchmarking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card gunner-card is-needs">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">🛟</div>
+            <div class="card-identity">
+              <div class="card-name">The Support AI</div>
+              <div class="card-role-pill">Tier-1 Support</div>
+            </div>
+          </div>
+          <div class="status-badge needs"><span class="status-dot"></span>Planned</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Handles support tickets without a human. Escalates tier-2 only.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">80% of tickets resolved automatically. Zero Corey involvement.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">FAQ Resolution</span>
+            <span class="ability-tag">Webhook Debug</span>
+            <span class="ability-tag">GHL Help</span>
+            <span class="ability-tag">Escalation Routing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card gunner-card is-needs">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">🔒</div>
+            <div class="card-identity">
+              <div class="card-name">The Retention AI</div>
+              <div class="card-role-pill">Churn Prevention</div>
+            </div>
+          </div>
+          <div class="status-badge needs"><span class="status-dot"></span>Planned</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Monitors usage, flags at-risk accounts, triggers check-ins before churn.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">Monthly churn under 3%. At-risk accounts saved before they cancel.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">PostHog Monitoring</span>
+            <span class="ability-tag">Engagement Scoring</span>
+            <span class="ability-tag">At-Risk Detection</span>
+            <span class="ability-tag">Win-Back Sequences</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="member-card gunner-card is-needs">
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-avatar">📣</div>
+            <div class="card-identity">
+              <div class="card-name">The Content Engine</div>
+              <div class="card-role-pill">Proof · Demand · Content</div>
+            </div>
+          </div>
+          <div class="status-badge needs"><span class="status-dot"></span>Planned</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <div class="card-label">Mission</div>
+          <div class="card-value">Creates case studies, comparison content, and demand for every vertical.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Goal</div>
+          <div class="card-value">Every industry has a case study and demo video before launch day.</div>
+        </div>
+        <div class="card-section">
+          <div class="card-label">Powers</div>
+          <div class="abilities">
+            <span class="ability-tag">Case Studies</span>
+            <span class="ability-tag">LinkedIn Content</span>
+            <span class="ability-tag">ROI Calculators</span>
+            <span class="ability-tag">Cold Email Sequences</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- end .content -->
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="footer-text">Built by <span>Xhaka</span> · 2026</div>
+</footer>
+
+</body>
+</html>
