@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Brain, Users, FolderKanban, Activity, Wrench } from 'lucide-react';
+import { Home, Brain, Users, FolderKanban, Activity, Wrench, Layers } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const navItems = [
@@ -11,6 +11,7 @@ const navItems = [
   { href: '/agents', label: 'Agents', icon: Users },
   { href: '/projects', label: 'Projects', icon: FolderKanban },
   { href: '/tools', label: 'Tools', icon: Wrench },
+  { href: '/stack', label: 'Stack', icon: Layers },
   { href: '/system', label: 'System', icon: Activity },
 ];
 
